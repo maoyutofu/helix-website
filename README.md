@@ -1,3 +1,3 @@
 #  https://helix-editor.cn
 
-Built using [Zola](https://www.getzola.org/)
+使用 [Zola](https://www.getzola.org/) 构建
