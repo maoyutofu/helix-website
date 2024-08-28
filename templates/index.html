@@ -1,99 +1,105 @@
 {% extends "base.html" %}
 
 {% block content %}
-        <h2 class="subtitle">A post-modern <strong>text editor</strong>.</h2>
-      <!-- <img src="./screenshot.png" /> -->
-      <div id="demo"></div>
-      <div class="action">
-        <a href="https://docs.helix-editor.com/install.html">Install now.</a>
-      </div>
-      <hr/>
-      <section class="content">
-        <div class="selling-points">
-          <div class="selling-point">
-            <h2>Multiple selections</h2>
-            Multiple cursors as a core editing primitive, inspired by
-            <a href="http://kakoune.org/">Kakoune</a>. Commands manipulate
-            selections which allows concurrent code editing.
-            <!-- Editing is focused on being easy to reason with, even if it takes -->
-            <!-- a keystroke or two more than Vim or Kakoune. -->
-          </div>
+<h2 class="subtitle">后现代 <strong>文本编辑器</strong>.</h2>
+<!-- <img src="./screenshot.png" /> -->
+<div id="demo"></div>
+<div class="action">
+  <a href="https://docs.helix-editor.com/install.html">Install now.</a>
+</div>
+<hr />
+<section class="content">
+  <div class="selling-points">
+    <div class="selling-point">
+      <h2>Multiple selections</h2>
+      Multiple cursors as a core editing primitive, inspired by
+      <a href="http://kakoune.org/">Kakoune</a>. Commands manipulate
+      selections which allows concurrent code editing.
+      <!-- Editing is focused on being easy to reason with, even if it takes -->
+      <!-- a keystroke or two more than Vim or Kakoune. -->
+    </div>
 
-          <div class="selling-point">
-            <h2><a href="https://tree-sitter.github.io/tree-sitter/">Tree-sitter</a> integration</h2>
-            Tree-sitter produces error tolerant and robust syntax trees,
-            which enables better syntax highlighting, indent calculation
-            and code navigation.
-          </div>
+    <div class="selling-point">
+      <h2><a href="https://tree-sitter.github.io/tree-sitter/">Tree-sitter</a> integration</h2>
+      Tree-sitter produces error tolerant and robust syntax trees,
+      which enables better syntax highlighting, indent calculation
+      and code navigation.
+    </div>
 
-          <div class="selling-point">
-            <h2>Powerful code manipulation</h2>
-            <a href="https://docs.helix-editor.com/usage.html#tree-sitter-textobject-based-navigation">
-            Navigate</a> and <a href="https://docs.helix-editor.com/usage.html#textobjects">select</a>
-            functions, classes, comments, etc and select syntax tree nodes instead of plain text.
-          </div>
+    <div class="selling-point">
+      <h2>Powerful code manipulation</h2>
+      <a href="https://docs.helix-editor.com/usage.html#tree-sitter-textobject-based-navigation">
+        Navigate</a> and <a href="https://docs.helix-editor.com/usage.html#textobjects">select</a>
+      functions, classes, comments, etc and select syntax tree nodes instead of plain text.
+    </div>
 
-          <div class="selling-point">
-            <h2>
-              <a href="https://microsoft.github.io/language-server-protocol/">Language server</a> support
-            </h2>
-            Language specific auto completion, goto definition, documentation,
-            diagnostics and other IDE features with no additional configuration.
-          </div>
+    <div class="selling-point">
+      <h2>
+        <a href="https://microsoft.github.io/language-server-protocol/">Language server</a> support
+      </h2>
+      Language specific auto completion, goto definition, documentation,
+      diagnostics and other IDE features with no additional configuration.
+    </div>
 
-          <div class="selling-point">
-            <h2>Built in Rust, for the terminal</h2>
-            No Electron. No VimScript. No JavaScript. Use it over ssh, tmux, or a plain
-            terminal. Your laptop battery life will thank you.
-          </div>
+    <div class="selling-point">
+      <h2>Built in Rust, for the terminal</h2>
+      No Electron. No VimScript. No JavaScript. Use it over ssh, tmux, or a plain
+      terminal. Your laptop battery life will thank you.
+    </div>
 
-          <div class="selling-point">
-            <h2>Modern builtin features</h2>
-            Fuzzy finder to jump to files and symbols, project wide search,
-            <a href="https://github.com/helix-editor/helix/wiki/Themes">beautiful themes</a>,
-            auto closing bracket pairs, <a href="https://docs.helix-editor.com/usage.html#surround">
-            surround</a> integration and more.
-          </div>
-        </div>
-        </section>
-      <hr/>
-      <section class="content">
-        <h2><strong>Frequent questions</strong></h2>
+    <div class="selling-point">
+      <h2>Modern builtin features</h2>
+      Fuzzy finder to jump to files and symbols, project wide search,
+      <a href="https://github.com/helix-editor/helix/wiki/Themes">beautiful themes</a>,
+      auto closing bracket pairs, <a href="https://docs.helix-editor.com/usage.html#surround">
+        surround</a> integration and more.
+    </div>
+  </div>
+</section>
+<hr />
+<section class="content">
+  <h2><strong>Frequent questions</strong></h2>
 
-          <h3>Post-modern?!</h3>
-          <p>It's a joke. If Neovim is the modern Vim, then Helix is post-modern.</p>
+  <h3>Post-modern?!</h3>
+  <p>It's a joke. If Neovim is the modern Vim, then Helix is post-modern.</p>
 
-          <h3>Is it any good?</h3>
-          <a href="http://news.ycombinator.com/item?id=3067434">Yes.</a>
+  <h3>Is it any good?</h3>
+  <a href="http://news.ycombinator.com/item?id=3067434">Yes.</a>
 
-          <h3>Are there plans for a GUI frontend?</h3>
-          <p>Eventually, yes! We'd like to prototype a WebGPU-based alternative frontend.
-          See the <a href="https://github.com/helix-editor/helix/issues/39">tracking issue</a> on GitHub.
-          </p>
+  <h3>Are there plans for a GUI frontend?</h3>
+  <p>Eventually, yes! We'd like to prototype a WebGPU-based alternative frontend.
+    See the <a href="https://github.com/helix-editor/helix/issues/39">tracking issue</a> on GitHub.
+  </p>
 
-          <h3>What about plugins?</h3>
-          <p>While there is currently no plugin system available, we do intend to eventually have one. But this will take some time (<a href="https://github.com/helix-editor/helix/discussions/3806">more discussion here</a>).</p>
+  <h3>What about plugins?</h3>
+  <p>While there is currently no plugin system available, we do intend to eventually have one. But this will take some
+    time (<a href="https://github.com/helix-editor/helix/discussions/3806">more discussion here</a>).</p>
 
-          <h3>How does it differ from Kakoune?</h3>
-          <p>Mainly by having more things built-in. Kakoune is <a href="https://github.com/mawww/kakoune/blob/master/doc/design.asciidoc">composable by design</a>, relying on external tooling to manage splits and provide language server support. Helix instead chooses to integrate more. We also use tree-sitter for highlighting and code analysis.</p>
+  <h3>How does it differ from Kakoune?</h3>
+  <p>Mainly by having more things built-in. Kakoune is <a
+      href="https://github.com/mawww/kakoune/blob/master/doc/design.asciidoc">composable by design</a>, relying on
+    external tooling to manage splits and provide language server support. Helix instead chooses to integrate more. We
+    also use tree-sitter for highlighting and code analysis.</p>
 
-          <h3>How does it differ from Vim?</h3>
-          <p>By starting from scratch we were able to learn from our experience with Vim and make some breaking changes. The result is a much smaller codebase and a modern set of defaults. It's easier to get started if you've never used a modal editor before, and there's much less fiddling with config files.</p>
+  <h3>How does it differ from Vim?</h3>
+  <p>By starting from scratch we were able to learn from our experience with Vim and make some breaking changes. The
+    result is a much smaller codebase and a modern set of defaults. It's easier to get started if you've never used a
+    modal editor before, and there's much less fiddling with config files.</p>
 
-      </section>
-      <hr/>
-      <section class="content">
-        <h2><strong>Support</strong></h2>
-            <p>Contribute code on <a href="https://github.com/helix-editor/helix">GitHub</a>.</p>
-            <p>Discuss the project on <a href="https://matrix.to/#/#helix-community:matrix.org">Matrix</a>.</p>
-            <p>Sponsor development on <a href="https://opencollective.com/helix-editor">OpenCollective</a>.</p>
-      </section>
-      <hr/>
-    <script src="./asciinema-player.min.js"></script>
-    <script>
-      AsciinemaPlayer.create('/430253.cast', document.getElementById('demo'), {
-        cols: 120,
-        rows: 35,
-      });
-    </script>
+</section>
+<hr />
+<section class="content">
+  <h2><strong>Support</strong></h2>
+  <p>Contribute code on <a href="https://github.com/helix-editor/helix">GitHub</a>.</p>
+  <p>Discuss the project on <a href="https://matrix.to/#/#helix-community:matrix.org">Matrix</a>.</p>
+  <p>Sponsor development on <a href="https://opencollective.com/helix-editor">OpenCollective</a>.</p>
+</section>
+<hr />
+<script src="./asciinema-player.min.js"></script>
+<script>
+  AsciinemaPlayer.create('/430253.cast', document.getElementById('demo'), {
+    cols: 120,
+    rows: 35,
+  });
+</script>
 {% endblock content %}
