@@ -2,11 +2,11 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
     <title>Helix</title>
     <subtitle>A post-modern modal text editor.</subtitle>
-    <link rel="self" type="application/atom+xml" href="https://helix-editor.com/atom.xml"/>
-    <link rel="alternate" type="text/html" href="https://helix-editor.com"/>
+    <link rel="self" type="application/atom+xml" href="https://helix-editor.cn/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://helix-editor.cn"/>
     <generator uri="https://www.getzola.org/">Zola</generator>
     <updated>2024-03-30T00:00:00+00:00</updated>
-    <id>https://helix-editor.com/atom.xml</id>
+    <id>https://helix-editor.cn/atom.xml</id>
     <entry xml:lang="en">
         <title>Release 24.03 Highlights</title>
         <published>2024-03-30T00:00:00+00:00</published>
@@ -20,10 +20,10 @@
           </name>
         </author>
         
-        <link rel="alternate" type="text/html" href="https://helix-editor.com/news/release-24-03-highlights/"/>
-        <id>https://helix-editor.com/news/release-24-03-highlights/</id>
+        <link rel="alternate" type="text/html" href="https://helix-editor.cn/news/release-24-03-highlights/"/>
+        <id>https://helix-editor.cn/news/release-24-03-highlights/</id>
         
-        <content type="html" xml:base="https://helix-editor.com/news/release-24-03-highlights/">&lt;p&gt;The Helix 24.03 release has arrived! First, a very big &lt;em&gt;thank you&lt;&#x2F;em&gt; to everyone
+        <content type="html" xml:base="https://helix-editor.cn/news/release-24-03-highlights/">&lt;p&gt;The Helix 24.03 release has arrived! First, a very big &lt;em&gt;thank you&lt;&#x2F;em&gt; to everyone
 who made this release possible. This release saw changes from 125 contributors.&lt;&#x2F;p&gt;
 &lt;p&gt;New to Helix?
 Helix is a modal text editor with built-in support for multiple selections,
@@ -113,10 +113,10 @@ and follow along with Helix&#x27;s development in the &lt;a href=&quot;https:&#x
           </name>
         </author>
         
-        <link rel="alternate" type="text/html" href="https://helix-editor.com/news/release-23-10-highlights/"/>
-        <id>https://helix-editor.com/news/release-23-10-highlights/</id>
+        <link rel="alternate" type="text/html" href="https://helix-editor.cn/news/release-23-10-highlights/"/>
+        <id>https://helix-editor.cn/news/release-23-10-highlights/</id>
         
-        <content type="html" xml:base="https://helix-editor.com/news/release-23-10-highlights/">&lt;p&gt;The Helix 23.10 release is finally here! 23.10 introduces some very large
+        <content type="html" xml:base="https://helix-editor.cn/news/release-23-10-highlights/">&lt;p&gt;The Helix 23.10 release is finally here! 23.10 introduces some very large
 internal changes that enable some powerful features. A very big &lt;em&gt;thank you&lt;&#x2F;em&gt; to
 everyone who made this release possible.&lt;&#x2F;p&gt;
 &lt;p&gt;New to Helix?
@@ -239,10 +239,10 @@ and follow along with Helix&#x27;s development in the &lt;a href=&quot;https:&#x
           </name>
         </author>
         
-        <link rel="alternate" type="text/html" href="https://helix-editor.com/news/release-23-03-highlights/"/>
-        <id>https://helix-editor.com/news/release-23-03-highlights/</id>
+        <link rel="alternate" type="text/html" href="https://helix-editor.cn/news/release-23-03-highlights/"/>
+        <id>https://helix-editor.cn/news/release-23-03-highlights/</id>
         
-        <content type="html" xml:base="https://helix-editor.com/news/release-23-03-highlights/">&lt;p&gt;Helix is a modal text editor with built-in support for multiple selections,
+        <content type="html" xml:base="https://helix-editor.cn/news/release-23-03-highlights/">&lt;p&gt;Helix is a modal text editor with built-in support for multiple selections,
 Language Server Protocol (LSP), tree-sitter, and experimental support for Debug
 Adapter Protocol (DAP).&lt;&#x2F;p&gt;
 &lt;p&gt;Today marks the 23.03 release. First, a big &lt;em&gt;thank you&lt;&#x2F;em&gt; to everyone involved!
@@ -338,10 +338,10 @@ and follow along with Helix&#x27;s development in the &lt;a href=&quot;https:&#x
           </name>
         </author>
         
-        <link rel="alternate" type="text/html" href="https://helix-editor.com/news/release-22-12-highlights/"/>
-        <id>https://helix-editor.com/news/release-22-12-highlights/</id>
+        <link rel="alternate" type="text/html" href="https://helix-editor.cn/news/release-22-12-highlights/"/>
+        <id>https://helix-editor.cn/news/release-22-12-highlights/</id>
         
-        <content type="html" xml:base="https://helix-editor.com/news/release-22-12-highlights/">&lt;p&gt;Helix is a modal text editor with built-in support for multiple selections,
+        <content type="html" xml:base="https://helix-editor.cn/news/release-22-12-highlights/">&lt;p&gt;Helix is a modal text editor with built-in support for multiple selections,
 Language Server Protocol (LSP), tree-sitter, and experimental support for Debug
 Adapter Protocol (DAP).&lt;&#x2F;p&gt;
 &lt;p&gt;Today we cut the 22.12 release. This release is big and featureful and saw
@@ -437,10 +437,10 @@ channel&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
           </name>
         </author>
         
-        <link rel="alternate" type="text/html" href="https://helix-editor.com/news/release-22-08-highlights/"/>
-        <id>https://helix-editor.com/news/release-22-08-highlights/</id>
+        <link rel="alternate" type="text/html" href="https://helix-editor.cn/news/release-22-08-highlights/"/>
+        <id>https://helix-editor.cn/news/release-22-08-highlights/</id>
         
-        <content type="html" xml:base="https://helix-editor.com/news/release-22-08-highlights/">&lt;p&gt;Helix is a modal text editor with built-in support for multiple selections,
+        <content type="html" xml:base="https://helix-editor.cn/news/release-22-08-highlights/">&lt;p&gt;Helix is a modal text editor with built-in support for multiple selections,
 Language Server Protocol (LSP), tree-sitter, and experimental support for Debug
 Adapter Protocol (DAP).&lt;&#x2F;p&gt;
 &lt;p&gt;Today marks the 22.08 release, a release with plenty of fixes and new features.
@@ -542,10 +542,10 @@ the &lt;a href=&quot;https:&#x2F;&#x2F;matrix.to&#x2F;#&#x2F;#helix-community:ma
           </name>
         </author>
         
-        <link rel="alternate" type="text/html" href="https://helix-editor.com/news/release-22-05-highlights/"/>
-        <id>https://helix-editor.com/news/release-22-05-highlights/</id>
+        <link rel="alternate" type="text/html" href="https://helix-editor.cn/news/release-22-05-highlights/"/>
+        <id>https://helix-editor.cn/news/release-22-05-highlights/</id>
         
-        <content type="html" xml:base="https://helix-editor.com/news/release-22-05-highlights/">&lt;p&gt;Helix is a modal text editor with built-in support for multiple selections,
+        <content type="html" xml:base="https://helix-editor.cn/news/release-22-05-highlights/">&lt;p&gt;Helix is a modal text editor with built-in support for multiple selections,
 Language Server Protocol (LSP), tree-sitter, and experimental support for Debug
 Adapter Protocol (DAP).&lt;&#x2F;p&gt;
 &lt;p&gt;Today marks the 22.05 release, a featureful release with over double the number
@@ -639,10 +639,10 @@ Contribute and follow along with development in the
           </name>
         </author>
         
-        <link rel="alternate" type="text/html" href="https://helix-editor.com/news/release-22-03-highlights/"/>
-        <id>https://helix-editor.com/news/release-22-03-highlights/</id>
+        <link rel="alternate" type="text/html" href="https://helix-editor.cn/news/release-22-03-highlights/"/>
+        <id>https://helix-editor.cn/news/release-22-03-highlights/</id>
         
-        <content type="html" xml:base="https://helix-editor.com/news/release-22-03-highlights/">&lt;p&gt;Ranging from small quality-of-life improvements and fixes to large features
+        <content type="html" xml:base="https://helix-editor.cn/news/release-22-03-highlights/">&lt;p&gt;Ranging from small quality-of-life improvements and fixes to large features
 and refactors, Helix 22.03 brings some exciting changes. Helix is a modal
 text editor with built-in support for multiple selections, Language
 Server Protocol (LSP), tree-sitter, and now Debug Adapter Protocol (DAP).&lt;&#x2F;p&gt;
