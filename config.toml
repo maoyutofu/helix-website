@@ -11,8 +11,8 @@ build_search_index = true
 generate_feeds = true
 
 # The site title, author and description; used in feeds by default.
-title = "Helix"
-description = "A post-modern modal text editor."
+title = "Helix - 后现代文本编辑器"
+description = "后现代模态文本编辑器"
 author = "Helix Contributors"
 
 [markdown]
