@@ -166,6 +166,6 @@ full [changelog] for the details.
 Come chat about usage and development questions in the [Matrix space][matrix]
 and follow along with Helix's development in the [GitHub repository][helix-git].
 
-[changelog]: https://github.com/helix-editor/helix/blob/master/CHANGELOG.md#2501-2025-01-03
+[更新日志]: https://github.com/helix-editor/helix/blob/master/CHANGELOG.md#2501-2025-01-03
 [helix-git]: https://github.com/helix-editor/helix/
 [matrix]: https://matrix.to/#/#helix-community:matrix.org
