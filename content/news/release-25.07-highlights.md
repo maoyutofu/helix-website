@@ -2,7 +2,7 @@
 title = "Release 25.07 Highlights"
 date = 2025-07-15T00:01:00Z
 type = "post"
-description = "Highlights of the 25.07 release."
+description = "25.07 版本的主要亮点。"
 in_search_index = true
 +++
 
