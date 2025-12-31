@@ -48,80 +48,56 @@
  <h1 class="title">Release 24.03 Highlights</h1>
  <time>30 March 2024</time>
 
-<p>The Helix 24.03 release has arrived! First, a very big <em>thank you</em> to everyone
-who made this release possible. This release saw changes from 125 contributors.</p>
-<p>New to Helix?
-Helix is a modal text editor with built-in support for multiple selections,
-Language Server Protocol (LSP), tree-sitter, and experimental support for Debug
-Adapter Protocol (DAP).</p>
-<p>Let's check out this release's highlights.</p>
-<h2 id="amp-like-jumping">Amp-like jumping</h2>
+<p>Helix 24.03 版本发布啦！首先，非常感谢所有为此次发布做出贡献的人。本次版本更新包含
+了来自 125 位贡献者的改进。</p>
+<p>初次接触 Helix？
+Helix 是一款模式文本编辑器，内置支持多重选择、语言服务器协议 (LSP)、tree-sitter，
+并提供对调试适配器协议 (DAP) 的实验性支持。</p>
+<p>让我们来看看本次版本更新的亮点。</p>
+<h2 id="lei-si-amp-de-tiao-zhuan-gong-neng">类似 Amp 的跳转功能</h2>
 <asciinema-player src="/amp-jump.cast" cols="94" rows="25"></asciinema-player>
-<p>Jumping features are popular in the (Neo)Vim plugin space and there are even
-plugins to add the same functionality to other tools like browsers. They allow
-you to move your selection efficiently across even large parts of the view,
-like you could by clicking with a mouse, but by entering "labels" instead.
-24.03 introduces jumping commands inspired by the <a href="https://github.com/jmacdonald/amp">Amp editor</a>'s <a href="https://amp.rs/docs/usage/#jump-mode">jump mode</a>.
-Press <code>gw</code> to add the jump labels and then enter one of the labels to jump to
-the word under that label. Using <code>gw</code> in select mode (<code>v</code>) extends the
-selection.</p>
-<h2 id="block-comments">Block comments</h2>
-<p>In the past, Helix has only been able to toggle line comments like <code>//</code> and <code>#</code>
-and languages like OCaml have been left with workarounds like a "line" comment
-token of <code>(*</code>. In 24.03 Helix can now toggle block comments as well. Use <code>C-c</code>
-or <code>&lt;space&gt;c</code> to smartly add or remove line or block comments around the current
-selection based on the language's comment token configuration, <code>&lt;space&gt;c</code> to
-toggle block comments around the current selection, or <code>&lt;space&gt;&lt;A-c&gt;</code> to toggle
-only line comments on the current line.</p>
-<h2 id="improvements-to-tree-sitter-injections">Improvements to tree-sitter injections</h2>
-<p>Helix uses <a href="https://github.com/tree-sitter/tree-sitter"><code>tree-sitter</code></a> incremental parsing for syntax highlighting,
-textobjects, indentation and some motions and commands. 24.03 improves how we
-handle <em><a href="https://tree-sitter.github.io/tree-sitter/syntax-highlighting#language-injection">injections</a></em> - a powerful tree-sitter feature for parsing documents
-with multiple languages. For example you might have JavaScript, CSS or other
-languages within a <code>&lt;script&gt;</code> or <code>&lt;style&gt;</code> tag in HTML. The HTML parser doesn't
-need to know how to parse all of these languages. Instead it can <em>inject</em>
-JavaScript or CSS parsers to handle the <code>&lt;script&gt;</code> or <code>&lt;style&gt;</code> tag contents.</p>
+<p>跳转功能在 (Neo)Vim 插件领域非常流行，甚至还有一些插件可以将相同的功能添加到其他
+工具（例如浏览器）中。它们允许您高效地在视图的各个部分之间移动光标，就像使用鼠标点
+击一样，但不同之处在于您需要输入“标签”来完成跳转。24.03 版本引入了受 [Amp 编辑
+器] 的 [跳转模式] 启发而设计的跳转命令。按下 <code>gw</code> 即可添加跳转标签，然后输入其中
+一个标签即可跳转到该标签下的单词。在选择模式 (<code>v</code>) 下使用 <code>gw</code> 可以扩展选择范围。</p>
+<h2 id="kuai-zhu-shi">块注释</h2>
+<p>过去，Helix 只能切换行注释，例如 <code>//</code> 和 <code>#</code>，而像 OCaml 这样的语言只能使用一些
+变通方法，例如使用 <code>(*</code> 作为“行”注释标记。在 24.03 版本中，Helix 现在也可以切换
+块注释了。使用 <code>C-c</code> 或 <code>&lt;space&gt;c</code> 可以根据语言的注释标记配置智能地添加或删除当
+前选定内容周围的行注释或块注释，使用 <code>&lt;space&gt;c</code> 可以切换当前选定内容周围的块注释，
+使用 <code>&lt;space&gt;&lt;A-c&gt;</code> 则可以仅切换当前行的行注释。</p>
+<h2 id="tree-sitter-zhu-ru-gong-neng-gai-jin">Tree-sitter 注入功能改进</h2>
+<p>Helix 使用 <a href="https://github.com/tree-sitter/tree-sitter"><code>tree-sitter</code></a> 增量解析进行语法高亮、文本对象、缩进以及一些移动和命
+令操作。24.03 版本改进了我们处理 <em>[注入]</em> 的方式——这是一项强大的 tree-sitter 功
+能，用于解析包含多种语言的文档。例如，您可能在 HTML 文档的 <code>&lt;script&gt;</code> 或 <code>&lt;style&gt;</code>
+标签中包含 JavaScript、CSS 或其他语言。HTML 解析器无需知道如何解析所有这些语言。相
+反，它可以 <em>注入</em> JavaScript 或 CSS 解析器来处理 <code>&lt;script&gt;</code> 或 <code>&lt;style&gt;</code> 标签
+的内容。</p>
 <asciinema-player src="/ts-subtree-and-motions-injection.cast" cols="94" rows="25"></asciinema-player>
-<p>One of these improvements is to the <code>:tree-sitter-subtree</code> command that
-displays an S-expression of the syntax tree under the cursor. 24.03 shows the
-injection layer under the selection instead of only the root layer. For example
-in this asciicast we now show the syntax tree for the JavaScript parts of the
-document while in the past we only showed the HTML part of the tree.</p>
-<p>The other big improvement is to the tree-sitter motions. <code>A-o</code> (alt + o)
-expands the selection to the parent node of the syntax tree node covered by the
-current selection. <code>A-i</code> shrinks to the child node and <code>A-n</code> and <code>A-p</code> go to
-the <em>n</em>ext and <em>p</em>revious nodes, respectively. Previously these
-commands only worked on the root layer (for example HTML in the asciicast) but
-they now find the injection layer that contains the selection and move along
-that layer's syntax tree. Internally we organize injection layers into a
-tree-like structure so that these motions can switch layers when needed.</p>
-<p>Stay tuned for future changes that improve injections, like finding textobjects
-within injected content.</p>
-<h2 id="internal-improvements">Internal improvements</h2>
-<p>24.03 also saw major internal improvements. The first comes from a new "event
-system" - a system built around Tokio channels and tasks that allows different
-parts of the Helix codebase to communicate with one another. The event system
-also adds generic ways to debounce and run tasks in background threads so we
-can prevent locking up the UI. Some parts of the code base have already been
-migrated to the event system like LSP completion and signature-help. In
-24.03 you'll notice that LSP completion doesn't automatically pop up after just
-navigating around in insert mode, for example with arrow keys. It's now hooked
-into document changes instead, so it can smartly pop up when you start changing
-a document rather than every time the editor goes idle.</p>
-<p>The other major improvement to be excited for is the general replacement of the
-<code>regex</code> crate with <a href="https://github.com/pascalkuthe/regex-cursor"><code>regex-cursor</code></a>, a streaming regex implementation
-compatible with <a href="https://github.com/cessen/ropey"><code>ropey</code></a>, the rope crate we use to represent all documents.
-<code>regex-cursor</code> is capable of running on <em>discontiguous strings</em> - input that
-may not be collocated in memory. In a rope, different parts of the document
-might be stored separately internally. To use the <code>regex</code> API we needed to
-convert slices of the document to a regular Rust <code>String</code>, duplicating the
-memory footprint of that slice of the document. <code>regex-cursor</code> operates on the
-chunks of the rope instead, which greatly improves efficiency.</p>
-<h2 id="wrapping-up">Wrapping up</h2>
-<p>As always, this is just the highlights from the 24.03 release. Check out the
-full [changelog] for the details.</p>
-<p>Come chat about usage and development questions in the <a href="https://matrix.to/#/#helix-community:matrix.org">Matrix space</a>
-and follow along with Helix's development in the <a href="https://github.com/helix-editor/helix/">GitHub repository</a>.</p>
+<p>其中一项改进是针对 <code>:tree-sitter-subtree</code> 命令的，该命令显示光标下方语法树的 S 表
+达式。24.03 版本会显示选定内容下方的注入层，而不是仅显示根层。例如，在此 asciicast
+演示中，我们现在显示文档中 JavaScript 部分的语法树，而以前我们只显示 HTML 部分的语法树。</p>
+<p>另一个重大改进是针对 tree-sitter 移动操作的。<code>A-o</code>（Alt + o）将选择范围扩展到当前
+选定内容所覆盖的语法树节点的父节点。<code>A-i</code> 缩小到子节点，<code>A-n</code> 和 <code>A-p</code> 分别移动到
+下一个和上一个节点。以前，这些命令仅在根层（例如 HTML）上有效。 （如 asciicast 所示），但
+它们现在会找到包含所选内容的注入层，并沿着该层的语法树移动。我们在内部将注入层组织成
+树状结构，以便这些操作可以在需要时切换层。</p>
+<p>敬请期待未来改进注入功能的更新，例如在注入内容中查找文本对象。</p>
+<h2 id="nei-bu-gai-jin">内部改进</h2>
+<p>24.03 版本也带来了重大的内部改进。首先是全新的“事件系统”——一个基于 Tokio 通道和任务构建的系统，
+允许 Helix 代码库的不同部分相互通信。该事件系统还添加了通用的方法来防抖和在后台线程中运行任务，
+从而防止 UI 阻塞。代码库的某些部分已经迁移到事件系统，例如 LSP 补全和签名帮助。
+在 24.03 版本中，您会注意到 LSP 补全不会在插入模式下仅通过导航（例如使用箭头键）后自动弹出。
+它现在与文档更改挂钩，因此只有在您开始更改文档时才会智能弹出，而不是每次编辑器空闲时都弹出。</p>
+<p>另一个值得期待的重大改进是用 <a href="https://github.com/pascalkuthe/regex-cursor"><code>regex-cursor</code></a> 替换了 <code>regex</code> crate，
+<a href="https://github.com/pascalkuthe/regex-cursor"><code>regex-cursor</code></a> 是一个流式正则表达式实现，与我们用于表示所有文档的 rope crate <a href="https://github.com/cessen/ropey"><code>ropey</code></a> 兼容。
+<code>regex-cursor</code> 能够在_非连续字符串_上运行——这些输入可能不会在内存中连续存储。
+在 rope 中，文档的不同部分可能在内部单独存储。为了使用 <code>regex</code> API，我们需要将文档的切片转换为常规的 Rust <code>String</code>，
+这会复制该文档切片的内存占用。<code>regex-cursor</code> 则直接在 rope 的块上操作，这大大提高了效率。</p>
+<h2 id="zong-jie">总结</h2>
+<p>一如既往，这只是 24.03 版本的一些亮点。查看完整的<a href="https://github.com/helix-editor/helix/blob/master/CHANGELOG.md#2404-2024-03-30">更新日志</a>了解更多详情。</p>
+<p>欢迎在 <a href="https://matrix.to/#/#helix-community:matrix.org">Matrix 空间</a>讨论使用和开发问题，并在 <a href="https://github.com/helix-editor/helix/">GitHub 仓库</a>关注 Helix 的开发进展。</p>
 
 
 <script src="/asciinema-player.min.js"></script>

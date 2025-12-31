@@ -48,86 +48,63 @@
  <h1 class="title">Release 23.03 Highlights</h1>
  <time>31 March 2023</time>
 
-<p>Helix is a modal text editor with built-in support for multiple selections,
-Language Server Protocol (LSP), tree-sitter, and experimental support for Debug
-Adapter Protocol (DAP).</p>
-<p>Today marks the 23.03 release. First, a big <em>thank you</em> to everyone involved!
-This release includes changes from 102 contributors. Today's release brings
-some especially useful and exciting features, so let's jump right in.</p>
+<p>Helix 是一款模式文本编辑器，内置支持多重选择、
+语言服务器协议 (LSP)、tree-sitter，并实验性地支持调试适配器协议 (DAP)。</p>
+<p>今天发布的是 23.03 版本。首先，衷心感谢所有参与者！
+本次版本包含来自 102 位贡献者的改进。本次发布带来了一些特别实用且令人兴奋的功能，
+让我们一起来看看吧。</p>
 <h2 id="soft-wrap">Soft-wrap</h2>
 <asciinema-player src="/softwrap.cast" cols="94" rows="25"></asciinema-player>
-<p>Soft-wrap breaks up lines to fit in view without inserting actual line break
-characters into the text (so called "hard-wrapping"). This can be useful for
-reading and editing documentation or code with especially long lines. Enable
-soft-wrap in your config with the <code>editor.soft-wrap.enable</code> key:</p>
+<p>软换行功能会将文本行自动折叠以适应视图，但不会在文本中插入实际的换行符（即所谓的“硬换行”）。
+这对于阅读和编辑包含特别长行的文档或代码非常有用。您可以通过 <code>editor.soft-wrap.enable</code>
+键在配置文件中启用软换行功能：</p>
 <pre data-lang="toml" style="background-color:#2b303b;color:#c0c5ce;" class="language-toml "><code class="language-toml" data-lang="toml"><span style="color:#65737e;"># ~/.config/helix/config.toml
 </span><span>[editor.soft-wrap]
 </span><span style="color:#bf616a;">enable </span><span>= </span><span style="color:#d08770;">true
 </span></code></pre>
-<p>Heuristics for where to break lines and the wrap indicator may also be
-<a href="https://docs.helix-editor.com/configuration.html#editorsoft-wrap-section">configured</a>.</p>
-<p>Soft-wrap is the first feature implemented on top of a new "virtual text" API
-within the Helix codebase. The virtual text API allows us to decorate and
-manipulate the actual text in a document without disturbing positioning and
-modifications. The virtual text API opens the door for many new exciting
-features like the inlay hints we'll see next.</p>
-<h2 id="inlay-hints">Inlay hints</h2>
+<p>换行位置的启发式方法和换行指示器也可能是
+<a href="https://docs.helix-editor.cn/configuration.html#editorsoft-wrap-section">configured</a>.</p>
+<p>软换行是基于 Helix 代码库中全新“虚拟文本”API 实现的第一个功能。虚拟文本 API 允许我们修饰
+和操作文档中的实际文本，而不会影响文本的定位和修改。虚拟文本 API 为许多令人兴奋的新功能（
+例如我们接下来将看到的内嵌提示）打开了大门。</p>
+<h2 id="nei-qian-ti-shi">内嵌提示</h2>
 <asciinema-player src="/inlay-hints.cast" cols="94" rows="25"></asciinema-player>
-<p>Inlay hints are a new feature in the latest LSP specification. Language servers
-can provide editors with hints to show in a document. In the example above,
-rust-analyzer provides type hints for variables and intermediary expressions
-as well as parameter names in function calls.</p>
-<p>Inlay hints can be enabled in your config with the <code>lsp.display-inlay-hints</code>
-key.</p>
-<h2 id="initial-support-for-snippets">Initial support for snippets</h2>
+<p>内嵌提示是最新 LSP 规范中的一项新功能。语言服务器可以向编辑器提供提示信息，以便在文档中显示。
+在上面的示例中，rust-analyzer 为变量和中间表达式以及函数调用中的参数名称提供了类型提示。</p>
+<p>您可以通过配置中的 <code>lsp.display-inlay-hints</code> 键启用内嵌提示功能。</p>
+<h2 id="chu-bu-zhi-chi-dai-ma-pian-duan-gong-neng">初步支持代码片段功能</h2>
 <asciinema-player src="/snippets.cast" cols="94" rows="25"></asciinema-player>
-<p>LSP snippets are a way for language servers to provide more complex completions
-for an editor. Language servers can specify where to place cursors within a
-completion (tabstops), placeholder values and more. Helix now has initial
-support for LSP completions, leaving more advanced snippet features like
-virtual placeholders, multiple tabstops, and variable substitutions for future
-work.</p>
-<h2 id="dynamic-workspace-symbol-picker">Dynamic workspace symbol picker</h2>
+<p>LSP 代码片段是语言服务器为编辑器提供更复杂代码补全功能的一种方式。语言服务器可以指定光标在
+补全内容中的位置（制表位）、占位符值等等。Helix 现在已初步支持 LSP 代码补全功能，而更高级
+的代码片段功能，例如虚拟占位符、多个制表位和变量替换，将在未来的版本中实现。</p>
+<h2 id="dong-tai-gong-zuo-qu-fu-hao-xuan-ze-qi">动态工作区符号选择器</h2>
 <asciinema-player src="/dynamic-workspace-symbol-picker.cast" cols="94" rows="25"></asciinema-player>
-<p>The workspace symbol picker (<code>&lt;space&gt;S</code>) is an LSP-driven feature for looking
-up a symbol in a project. Large projects might have many symbols, though, so
-this symbol picker typically wouldn't load them all at once. The workspace
-symbol picker has been reworked in this release though to dynamically
-re-request symbols with a new query as you type in the picker. This lets the
-language server narrow down the number of symbols and only tell Helix about the
-ones relevant to the search. This rework fixes compatibility with some language
-servers which returned empty symbols with no query (<code>gopls</code>, <code>pyright</code>,
-<code>clangd</code>) or limited results (<code>rust-analyzer</code>).</p>
-<p>The "dynamic picker" introduced in this refactor may benefit other pickers in
-the future, for example allowing the global search picker (<code>&lt;space&gt;/</code>) to
-update on-the-fly as you change the query.</p>
-<h2 id="version-control-head-statusline-element">Version control HEAD statusline element</h2>
+<p>工作区符号选择器（<code>&lt;space&gt;S</code>）是一项基于 LSP 的功能，用于在项目中查找符号。大型项目可能包
+含许多符号，因此此符号选择器通常不会一次性加载所有符号。不过，在此版本中，工作区符号选择器已
+进行了重构，以便在您输入搜索内容时动态地使用新的查询重新请求符号。这使得语言服务器能够缩小符
+号范围，并仅将与搜索相关的符号告知 Helix。此次重构解决了与某些语言服务器的兼容性问题，这些
+服务器在没有查询的情况下返回空符号（例如 <code>gopls</code>、<code>pyright</code>、<code>clangd</code>）或返回的结果有限
+（例如 <code>rust-analyzer</code>）。</p>
+<p>此次重构引入的“动态选择器”功能未来可能会惠及其他选择器，例如，允许全局搜索选择器（<code>&lt;space&gt;/</code>）
+在您更改查询时动态更新结果。</p>
+<h2 id="ban-ben-kong-zhi-head-zhuang-tai-lan-yuan-su">版本控制 HEAD 状态栏元素</h2>
 <asciinema-player src="/vcs-statusline-element.cast" cols="94" rows="25"></asciinema-player>
-<p>A new statusline element has been added which displays the version control
-HEAD. Add this to your statusline by introducing the <code>"version-control"</code>
-element in the
-<a href="https://docs.helix-editor.com/configuration.html#editorstatusline-section"><code>editor.statusline</code></a>
-section of your config for the <code>left</code>, <code>center</code> or <code>right</code> sides.</p>
-<h2 id="enhanced-keyboard-protocol">Enhanced keyboard protocol</h2>
-<p>Support for the <a href="https://sw.kovidgoyal.net/kitty/keyboard-protocol/">enhanced keyboard protocol</a> is now enabled. Terminals that
-support the protocol (Kitty, WezTerm) can now send unambiguous keycodes to
-Helix, enabling key combinations that weren't possible to bind before like
-<code>C-/</code>, <code>C-h</code> or <code>S-backspace</code>. This functionality works out-of-the-box for
-terminals that support the protocol.</p>
-<h2 id="runtime-directory-refactor">Runtime directory refactor</h2>
-<p>Helix keeps files like tree-sitter parsers and queries, themes and the tutor
-file in a special "runtime" directory. This directory is typically installed
-by your package manager and shouldn't be modified by hand. Multiple runtime
-directories are now supported, so you can keep the runtime files installed by
-your package manager unchanged while adding new tree-sitter parsers and
-queries to a local runtime directory. On Unix systems you can add files to the
-<code>~/.config/helix/runtime</code> directory which take precedence over the runtime
-directory installed by a package manager.</p>
-<h2 id="wrapping-up">Wrapping up</h2>
-<p>These flashy features are just the tip of the iceberg though. Check out the
-23.03 [changelog] for the full details on all of the changes in this release.</p>
-<p>Come chat about usage and development questions in the <a href="https://matrix.to/#/#helix-community:matrix.org">Matrix space</a>
-and follow along with Helix's development in the <a href="https://github.com/helix-editor/helix/">GitHub repository</a>.</p>
+<p>新增了一个状态栏元素，用于显示版本控制系统的 HEAD 版本。您可以通过在配置文件
+的 <a href="https://docs.helix-editor.cn/configuration.html#editorstatusline-section"><code>editor.statusline</code></a> 部
+分的 <code>left</code>、<code>center</code> 或 <code>right</code> 侧添加 <code>"version-control"</code> 元素来将其添加到状态栏中。</p>
+<h2 id="zeng-qiang-xing-jian-pan-xie-yi">增强型键盘协议</h2>
+<p>337
+现在已启用对增强型键盘协议的支持。支持该协议的终端（例如 Kitty、WezTerm）现在可以向 Helix 发
+送明确的按键代码，从而实现以前无法绑定的组合键，例如 <code>C-/</code>、<code>C-h</code> 或 <code>S-backspace</code>。对于支
+持该协议的终端，此功能无需任何配置即可使用。</p>
+<h2 id="yun-xing-shi-mu-lu-zhong-gou">运行时目录重构</h2>
+<p>Helix 将诸如 tree-sitter 解析器和查询文件、主题文件以及教程文件等文件保存在一个特殊的“运行时”目录中。
+此目录通常由您的包管理器安装，不应手动修改。现在支持多个运行时目录，因此您可以保留包管理器安装的运行时文
+件不变，同时将新的 tree-sitter 解析器和查询文件添加到本地运行时目录中。在 Unix 系统上，您可以将文件
+添加到 <code>~/.config/helix/runtime</code> 目录，该目录中的文件优先级高于包管理器安装的运行时目录中的文件。</p>
+<h2 id="zong-jie">总结</h2>
+<p>这些引人注目的功能只是冰山一角。请查看 23.03 <a href="https://github.com/helix-editor/helix/blob/master/CHANGELOG.md#2303-2023-03-31">更新日志</a>，了解此版本中所有更改的完整详细信息。</p>
+<p>欢迎加入 <a href="https://matrix.to/#/#helix-community:matrix.org">Matrix 空间</a> 讨论使用和开发方面的问题，并在 <a href="https://github.com/helix-editor/helix/">GitHub 仓库</a> 中关注 Helix 的开发进展。</p>
 
 
 <script src="/asciinema-player.min.js"></script>

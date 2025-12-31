@@ -48,28 +48,21 @@
  <h1 class="title">Release 23.10 Highlights</h1>
  <time>25 October 2023</time>
 
-<p>The Helix 23.10 release is finally here! 23.10 introduces some very large
-internal changes that enable some powerful features. A very big <em>thank you</em> to
-everyone who made this release possible.</p>
-<p>New to Helix?
-Helix is a modal text editor with built-in support for multiple selections,
-Language Server Protocol (LSP), tree-sitter, and experimental support for Debug
-Adapter Protocol (DAP).</p>
-<p>Let's check out this release's highlights.</p>
-<h2 id="multiple-language-servers">Multiple language servers</h2>
-<p>23.10 brings a big change to the way we handle language servers.
-Previously each language could only support one language server at a time but
-now you can configure multiple to work in tandem. For example you might use
-the TypeScript language server for JavaScript/TypeScript development and also
-configure <a href="https://github.com/mattn/efm-langserver">efm-langserver</a> for
-Prettier formatting and ESLint diagnostics. With the new support for multiple
-language servers, you can specify which features to use from each language
-server.</p>
-<p>This brings a big change to the way language servers are configured in your
-language configuration (<code>languages.toml</code>). All language servers are now
-specified separately from languages and then each language selects which
-language server(s) to use. From the example above, you might configure efm-
-langserver and typescript-language-server like so:</p>
+<p>Helix 23.10 版本终于发布了！23.10 版本引入了一些非常重要的内部改进，从而实现了许多强大的功能。非常感谢所有为此次发布做出贡献的人！</p>
+<p>初次接触 Helix？
+Helix 是一款模式文本编辑器，内置支持多重选择、语言服务器协议 (LSP)、tree-sitter，并提供对调试适配器协议 (DAP) 的实验性支持。</p>
+<p>让我们来看看此版本的亮点。</p>
+<h2 id="duo-yu-yan-fu-wu-qi-zhi-chi">多语言服务器支持</h2>
+<p>23.10 版本对我们处理语言服务器的方式进行了重大改进。
+以前，每种语言一次只能支持一个语言服务器，
+但现在您可以配置多个语言服务器协同工作。例如，您可以将
+TypeScript 语言服务器用于 JavaScript/TypeScript 开发，同时
+配置 <a href="https://github.com/mattn/efm-langserver">efm-langserver</a>
+用于 Prettier 格式化和 ESLint 诊断。借助新的多语言服务器支持，
+您可以指定从每个语言服务器使用哪些功能。</p>
+<p>这使得语言配置 (<code>languages.toml</code>) 中语言服务器的配置方式发生了重大变化。
+现在，所有语言服务器都与语言分开指定，然后每种语言选择要使用的语言服务器。
+以上述示例为例，您可以像这样配置 efm-langserver 和 typescript-language-server：</p>
 <pre data-lang="toml" style="background-color:#2b303b;color:#c0c5ce;" class="language-toml "><code class="language-toml" data-lang="toml"><span>[language-server.efm]
 </span><span style="color:#bf616a;">command </span><span>= &quot;</span><span style="color:#a3be8c;">efm-langserver</span><span>&quot;
 </span><span style="color:#bf616a;">config</span><span>.</span><span style="color:#bf616a;">documentFormatting </span><span>= </span><span style="color:#d08770;">true
@@ -87,26 +80,19 @@ langserver and typescript-language-server like so:</p>
 </span><span>  { </span><span style="color:#bf616a;">name </span><span>= &quot;</span><span style="color:#a3be8c;">typescript-language-server</span><span>&quot;, </span><span style="color:#bf616a;">except-features </span><span>= [&quot;</span><span style="color:#a3be8c;">format</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">diagnostics</span><span>&quot;] },
 </span><span>]
 </span></code></pre>
-<p>See more details in the <a href="https://docs.helix-editor.com/languages.html">language configuration docs</a>.</p>
-<h2 id="fuzzy-matching-with-nucleo">Fuzzy matching with Nucleo</h2>
+<p>更多详情请参阅<a href="https://docs.helix-editor.cn/languages.html">语言配置文档</a>.</p>
+<h2 id="shi-yong-nucleo-jin-xing-mo-hu-pi-pei">使用 Nucleo 进行模糊匹配</h2>
 <asciinema-player src="/nucleo-nix-store.cast" cols="94" rows="25"></asciinema-player>
-<p>Helix uses "fuzzy" matching to filter as-you-type in components like the file
-picker. Previously we used the popular <code>skim</code>/<code>fuzzy-matcher</code> crates but in the
-23.10 release we've switched to the new
-<a href="https://github.com/helix-editor/nucleo"><code>nucleo</code></a> crate. Nucleo is
-significantly faster than skim and fzf, handles Unicode correctly, and uses a
-bonus system that feels more intuitive.</p>
-<p>Nucleo also enables us to lazily stream in new items, which is a big boost for
-the user experience for pickers. In the asciicast above I'm scanning through
-my computer's <code>/nix/store</code>, a huge directory containing more than twenty
-million files. The file picker now works gradually as we scan through the
-directory and matches files as we find them.</p>
-<p>Nucleo also paves the way for future picker upgrades. Stay tuned to the
-upcoming release notes to see where we'll take the picker.</p>
-<h2 id="smart-tab">Smart tab</h2>
-<p>Smart tab is a new feature bound to the tab key in the default keymap. When
-you press tab and the line to the left of the cursor isn't all whitespace,
-the cursor will jump to the end of the syntax tree's parent node. For example:</p>
+<p>Helix 使用“模糊”匹配功能在文件选择器等组件中实现实时输入过滤。之前我们使用的是流行
+的 <code>skim</code>/<code>fuzzy-matcher</code> 库，但在 23.10 版本中，我们切换到了新
+的 <a href="https://github.com/helix-editor/nucleo"><code>nucleo</code></a> 库。Nucleo 的
+速度比 skim 和 fzf 快得多，能够正确处理 Unicode 字符，并且使用了一种更直观的评分系统。</p>
+<p>Nucleo 还使我们能够以惰性方式加载新项目，这极大地提升了文件选择器的用户体验。在上面
+的 asciicast 演示中，我正在扫描计算机的 <code>/nix/store</code> 目录，这是一个包含超过两千
+万个文件的巨大目录。现在，文件选择器会随着目录扫描的进行逐步工作，并在找到匹配文件时立即显示结果。</p>
+<p>Nucleo 也为未来的文件选择器升级奠定了基础。敬请关注即将发布的版本说明，了解我们将如何改进文件选择器。</p>
+<h2 id="zhi-neng-zhi-biao-fu">智能制表符</h2>
+<p>智能制表符是默认键位映射中与 Tab 键关联的一项新功能。当您按下 Tab 键且光标左侧的行不全是空格时，光标将跳转到语法树父节点的末尾。例如：</p>
 <pre data-lang="nix" style="background-color:#2b303b;color:#c0c5ce;" class="language-nix "><code class="language-nix" data-lang="nix"><span>{
 </span><span>  </span><span style="color:#d08770;">key </span><span>= &quot;</span><span style="color:#a3be8c;">value</span><span>&quot;;
 </span><span>  </span><span style="color:#d08770;">nested </span><span>= {
@@ -115,46 +101,32 @@ the cursor will jump to the end of the syntax tree's parent node. For example:</
 </span><span>  };
 </span><span>}
 </span></code></pre>
-<p>This is useful in languages like Nix for adding semicolons at the end of an
-attribute set or jumping to the end of a block in a C-like language:</p>
+<p>这在像 Nix 这样的语言中非常有用，例如可以在属性集的末尾添加分号，或者在类似 C 语言的语言中跳转到代码块的末尾：</p>
 <asciinema-player src="/smart-tab.cast" cols="94" rows="25"></asciinema-player>
-<h2 id="expanded-support-for-registers">Expanded support for registers</h2>
+<h2 id="kuo-zhan-liao-dui-registers-de-zhi-chi">扩展了对 registers 的支持</h2>
 <asciinema-player src="/special-registers.cast" cols="94" rows="25"></asciinema-player>
-<p>Registers allow you to save and paste values. For example you might select
-a paragraph, use <code>"ay</code> to yank it into the <code>a</code> register, and later use <code>"ap</code>
-to paste that paragraph. Some registers have special effects when read or
-written to though like the <code>_</code> "blackhole" register: any values written are
-discarded and nothing can be read. Special registers have been expanded to
-include some useful ones from Kakoune and clipboard registers:</p>
+<p>registers 允许您保存和粘贴值。例如，您可以选择一个段落，使用 <code>"ay</code> 将其复制到 <code>a</code> registers，然后使用 <code>"ap</code> 粘贴该段落。但是，某些 registers 在读取或写入时具有特殊效果，例如 <code>_</code>“黑洞” registers：写入的任何值都会被丢弃，并且无法从中读取任何内容。特殊 registers 已扩展，包含了一些来自 Kakoune 和剪贴板的实用 registers：</p>
 <ul>
-<li><code>%</code>: the current buffer name</li>
-<li><code>#</code>: the number of each selection, 1-indexed</li>
-<li><code>.</code>: the contents of each selection</li>
-<li><code>*</code> and <code>+</code>: system and primary clipboards</li>
+<li><code>%</code>：当前缓冲区名称</li>
+<li><code>#</code>：每个选区的编号，从 1 开始计数</li>
+<li><code>.</code>：每个选区的内容</li>
+<li><code>*</code> 和 <code>+</code>：系统剪贴板和主剪贴板</li>
 </ul>
-<p>Also check out the new register statusline element. It appears when you select
-a register with <code>"</code>. Notice the <code>reg=#</code> in the bottom-right corner of the
-statusline in the asciicast when we select the <code>#</code> register and how it goes
-away when we paste that register (<code>p</code>) or increment the selections (<code>C-a</code>).</p>
-<h2 id="initial-support-for-lsp-didchangewatchedfiles">Initial support for LSP DidChangeWatchedFiles</h2>
+<p>此外，还可以查看新的 registers 状态栏元素。当您使用 <code>"</code> 选择 registers 时，它会显示出来。请注意，在 asciicast 演示中，当我们选择 <code>#</code> registers 时，状态栏右下角会显示 <code>reg=#</code>，而当我们粘贴该 registers (<code>p</code>) 或增加选区 (<code>C-a</code>) 时，它就会消失。</p>
+<h2 id="chu-bu-zhi-chi-lsp-didchangewatchedfiles-gong-neng">初步支持 LSP DidChangeWatchedFiles 功能</h2>
 <asciinema-player src="/initial-lsp-didchangewatchedfiles.cast" cols="94" rows="25"></asciinema-player>
-<p>Some language servers use the DidChangeWatchedFiles notification to discover
-changes to related files in other languages. For example, <code>rust-analyzer</code> will
-fetch and index new dependencies when you add them to your <code>Cargo.toml</code>.
-Helix will now send file change notifications when the file is changed by
-Helix itself. Full support for DidChangeWatchedFiles will require a file
-watcher but for now we're able to support the most common use-case for
-DidChangeWatchedFiles.</p>
-<h2 id="syntax-highlight-regex-prompts">Syntax highlight regex prompts</h2>
+<p>一些语言服务器使用 DidChangeWatchedFiles 通知来检测其他语言相关文件的更改。
+例如，<code>rust-analyzer</code> 会在你将新的依赖项添加到 <code>Cargo.toml</code> 文件时获取并
+索引这些新的依赖项。Helix 现在会在文件被 Helix 本身修改时发送文件更改通知。
+完全支持 DidChangeWatchedFiles 需要文件监视器，但目前我们能够支
+持 DidChangeWatchedFiles 最常见的用例。</p>
+<h2 id="yu-fa-gao-liang-xian-shi-zheng-ze-biao-da-shi-ti-shi">语法高亮显示正则表达式提示</h2>
 <img src="/regex-prompt-highlighting.png" style="max-width: 80%; display: block; margin-left: auto; margin-right: auto"/>
-<p>Regex prompts like those created with <code>s</code>, <code>S</code> or <code>|</code> are now syntax highlighted
-via tree-sitter-regex. The highlighting makes special characters more obvious
-and can catch syntax errors like trailing backslashes.</p>
-<h2 id="wrapping-up">Wrapping up</h2>
-<p>As always, this is just the tip of the iceberg for the 23.10 release. Check out
-the [changelog] for the full details.</p>
-<p>Come chat about usage and development questions in the <a href="https://matrix.to/#/#helix-community:matrix.org">Matrix space</a>
-and follow along with Helix's development in the <a href="https://github.com/helix-editor/helix/">GitHub repository</a>.</p>
+<p>现在，使用 <code>s</code>、<code>S</code> 或 <code>|</code> 创建的正则表达式提示符可以通过 tree-sitter-regex 进行语法高亮显示。
+高亮显示使特殊字符更加醒目，并且可以捕获诸如末尾反斜杠之类的语法错误。</p>
+<h2 id="zong-jie">总结</h2>
+<p>一如既往，这只是 23.10 版本更新的冰山一角。查看<a href="https://github.com/helix-editor/helix/blob/master/CHANGELOG.md#2310-2023-10-24">更新日志</a>了解完整详情。</p>
+<p>欢迎加入 <a href="https://matrix.to/#/#helix-community:matrix.org">Matrix 空间</a> 讨论使用和开发方面的问题，并在 <a href="https://github.com/helix-editor/helix/">GitHub 仓库</a> 中关注 Helix 的开发进展。</p>
 
 
 <script src="/asciinema-player.min.js"></script>

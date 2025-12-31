@@ -48,86 +48,65 @@
  <h1 class="title">Release 22.12 Highlights</h1>
  <time>6 December 2022</time>
 
-<p>Helix is a modal text editor with built-in support for multiple selections,
-Language Server Protocol (LSP), tree-sitter, and experimental support for Debug
-Adapter Protocol (DAP).</p>
-<p>Today we cut the 22.12 release. This release is big and featureful and saw
-contributions from 99 contributors. Thank you all! 🎊</p>
-<p>Helix now has a logo! Thank you <a href="https://github.com/jakehl"><code>@jakehl</code></a> for your
-contribution!</p>
+<p>Helix 是一款模式化文本编辑器，内置支持多重选择、语言服务器协议 (LSP)、tree-sitter，并实验性地支持调试适配器协议 (DAP)。</p>
+<p>今天我们发布了 22.12 版本。这是一个功能丰富的大版本，共有 99 位贡献者参与其中。感谢大家！🎊</p>
+<p>Helix 现在有了自己的徽标！感谢 <a href="https://github.com/jakehl"><code>@jakehl</code></a> 的贡献！</p>
 <img src="/logo-with-text.svg" style="max-width: 75%; display: block; margin-left: auto; margin-right: auto" />
-<p>Looking for an introduction to Helix or to see Helix out in the wild? Check out
-these new videos on Helix.</p>
+<p>想了解 Helix 的入门知识或想看看 Helix 的实际应用？请观看以下关于 Helix 的新视频。</p>
 <ul>
 <li><a href="https://www.youtube.com/watch?v=xHebvTGOdH8">https://www.youtube.com/watch?v=xHebvTGOdH8</a></li>
 <li><a href="https://www.youtube.com/watch?v=7mTi278jUS8">https://www.youtube.com/watch?v=7mTi278jUS8</a></li>
 </ul>
-<p>Now let's jump into the highlights.</p>
-<h2 id="git-diff-gutter">Git diff gutter</h2>
+<p>现在让我们来看看精彩部分。</p>
+<h2 id="git-chai-yi-xian-shi-lan">Git 差异显示栏</h2>
 <asciinema-player src="/git-diff-gutter.cast" cols="94" rows="25"></asciinema-player>
-<p>The new git diff gutter tracks the changes in the current buffer compared to
-the the git index. The markers in the gutter indicate additions, modifications,
-and removals compared to the file checked in to git. The git diff gutter is
-enabled by default.</p>
-<p>Also be sure to try out the new hunk textobject: <code>]g</code> jumps to the next changed
-hunk and <code>[g</code> jumps to the previous.</p>
-<h2 id="underline-styles-and-colors">Underline styles and colors</h2>
+<p>新的 Git 差异侧边栏会跟踪当前缓冲区与 Git 索引之间的更改。侧边栏中的标记指示与已提交
+到 Git 的文件相比，哪些内容是新增的、修改的或删除的。Git 差异侧边栏默认启用。</p>
+<p>此外，请务必尝试新的代码块文本对象：<code>]g</code> 跳转到下一个更改的代码块，<code>[g</code> 跳转到上一个。</p>
+<h2 id="xia-hua-xian-yang-shi-he-yan-se">下划线样式和颜色</h2>
 <img src="/undercurl.png" style="max-width: 80%; display: block; margin-left: auto; margin-right: auto"/>
-<p>Terminals with support for extended underlines can render underlines with
-styles like curls or dots as well as colors. Extended underlines can be used to
-improve the display of LSP diagnostics. These can be configured in themes with
-the new <code>underline</code> key:</p>
+<p>支持扩展下划线的终端可以渲染带有卷曲或点状等样式以及颜色的下划线。扩展下划线可用于
+改进 LSP 诊断信息的显示。这些可以在主题中使用新的 <code>underline</code> 键进行配置：</p>
 <pre data-lang="toml" style="background-color:#2b303b;color:#c0c5ce;" class="language-toml "><code class="language-toml" data-lang="toml"><span>&quot;</span><span style="color:#a3be8c;">diagnostic.error</span><span>&quot; = { </span><span style="color:#bf616a;">underline </span><span>= { </span><span style="color:#bf616a;">style </span><span>= &quot;</span><span style="color:#a3be8c;">curl</span><span>&quot;, </span><span style="color:#bf616a;">color </span><span>= &quot;</span><span style="color:#a3be8c;">red</span><span>&quot; } }
 </span></code></pre>
-<p>The existing <code>underline</code> modifier is now an alias for the <code>"line"</code> style.</p>
-<p>If you're looking to use this in a theme that hasn't configured it yet, you
-can use the new <a href="https://docs.helix-editor.com/master/themes.html#inheritance">theme inheritance</a> feature to modify just the scopes you would
-like to change:</p>
+<p>现有的 <code>underline</code> 修饰符现在是 <code>"line"</code> 样式的别名。</p>
+<p>如果您想在尚未配置此功能的现有主题中使用它，
+可以使用新的[主题继承]功能，仅修改您想要更改的作用域：</p>
 <pre data-lang="toml" style="background-color:#2b303b;color:#c0c5ce;" class="language-toml "><code class="language-toml" data-lang="toml"><span style="color:#65737e;"># ~/.config/helix/themes/my-onedark.toml
 </span><span style="color:#bf616a;">inherits </span><span>= &quot;</span><span style="color:#a3be8c;">onedark</span><span>&quot;
 </span><span>
 </span><span>&quot;</span><span style="color:#a3be8c;">diagnostic.error</span><span>&quot; = { </span><span style="color:#bf616a;">fg </span><span>= &quot;</span><span style="color:#a3be8c;">errorfg</span><span>&quot;, </span><span style="color:#bf616a;">bg </span><span>= &quot;</span><span style="color:#a3be8c;">errorbg</span><span>&quot;, </span><span style="color:#bf616a;">underline </span><span>= { </span><span style="color:#bf616a;">color </span><span>= &quot;</span><span style="color:#a3be8c;">red</span><span>&quot; } }
 </span></code></pre>
-<h2 id="autosave-when-the-terminal-loses-focus">Autosave when the terminal loses focus</h2>
+<h2 id="dang-zhong-duan-shi-qu-jiao-dian-shi-zi-dong-bao-cun">当终端失去焦点时自动保存</h2>
 <img src="/auto-save.gif" style="max-width: 80%; display: block; margin-left: auto; margin-right: auto"/>
-<p>Terminals with support for focus events can now automatically save the current
-file when you focus on a new window. Enable this behavior by setting the
-<code>editor.auto-save</code> configuration key to <code>true</code>.</p>
-<h2 id="multi-cursor-completion">Multi-cursor completion</h2>
+<p>现在，支持焦点事件的终端可以在您切换到新窗口时自动保存当前文件。您可以通过将
+<code>editor.auto-save</code> 配置项设置为 <code>true</code> 来启用此功能。</p>
+<h2 id="duo-guang-biao-bu-quan">多光标补全</h2>
 <asciinema-player src="/multi-cursor-completion.cast" cols="94" rows="25"></asciinema-player>
-<p>Editing with multiple selections is a central feature within helix. LSP
-auto-completion now applies to all cursors when editing with multiple
-selections, making it easy to replace multiple instances of a symbol with
-auto-complete's help.</p>
+<p>多重选择编辑是 Helix 的核心功能之一。现在，在使用多重选择进行编辑时，LSP 自动补全
+功能会应用于所有光标，从而可以轻松地借助自动补全功能替换符号的多个实例。</p>
 <h2 id="bufferline">Bufferline</h2>
 <asciinema-player src="/bufferline.cast" cols="94" rows="25"></asciinema-player>
-<p>The bufferline is a listing of buffers displayed at the top of a window. It
-provides an at-a-glance view of the buffers you're working with. Set
-the <code>editor.bufferline</code> configuration key to <code>"always"</code> to always show the
-bufferline, <code>"multiple"</code> to show the bufferline only when there are multiple
-buffers open, and <code>"never"</code> to disable it.</p>
-<h2 id="behind-the-scenes-improvements">Behind-the-scenes improvements</h2>
-<p>22.12 brings also brings important changes to Helix's plumbing:</p>
+<p>bufferline 是显示在窗口顶部的一系列缓冲区列表。它可以让您一目了然地查看当前正在使用
+的缓冲区。将 <code>editor.bufferline</code> 配置项设置为 <code>"always"</code> 可始终显示缓冲区列
+表，设置为 <code>"multiple"</code> 可仅在打开多个缓冲区时显示缓冲区列表，设置为 <code>"never"</code>
+则禁用缓冲区列表。</p>
+<h2 id="hou-tai-gai-jin">后台改进</h2>
+<p>22.12 版本还带来了 Helix 内部机制的一些重要改进：</p>
 <ul>
-<li>The code-path for writing files has been overhauled. This fixes a number of
-edge cases around writing large files and failures to write.</li>
-<li>Performance has been improved for tree-sitter parsing, querying and the
-handling of injections. This is a noticeable speed boost for large markdown
-files in particular since markdown uses injections extensively.</li>
-<li>Failure handling in the LSP code-paths has been improved. Helix now
-gracefully handles cases like language servers not supporting capabilities
-and unexpected language server crashes.</li>
-<li>The speed and memory usage of the <code>:reload</code> command has been vastly improved.
-This comes from the creation of <a href="https://github.com/pascalkuthe/imara-diff"><code>imara-diff</code></a>, a new diffing
-implementation which is faster than the one used internally by <code>git</code>!</li>
+<li>文件写入代码路径已全面重构。这修复了许多与写入大文件和写入失败相关的边缘情况。</li>
+<li>Tree-sitter 解析、查询和注入处理的性能得到了提升。这对于大型 Markdown 文件
+来说尤其明显，因为 Markdown 文件广泛使用注入功能。</li>
+<li>LSP 代码路径中的错误处理得到了改进。Helix 现在可以优雅地处理诸如语言服务器不
+支持某些功能以及语言服务器意外崩溃等情况。</li>
+<li><code>:reload</code> 命令的速度和内存使用效率得到了显著提升。这得益于 <a href="https://github.com/pascalkuthe/imara-diff"><code>imara-diff</code></a>
+的创建，这是一种新的差异比较实现，比 <code>git</code> 内部使用的实现更快！</li>
 </ul>
-<h2 id="wrapping-up">Wrapping up</h2>
-<p>There are many more changes arriving now in 22.12 than we can fit in this post.
-Check out the 22.12 [changelog] for the full details on all of the performance
-boosts, usability improvements and fixes in 22.12.</p>
-<p>Contribute and follow along with development in the <a href="https://github.com/helix-editor/helix/">Helix GitHub
-repository</a> and be sure to join in on discussions in the <a href="https://matrix.to/#/#helix-community:matrix.org">Matrix
-channel</a>.</p>
+<h2 id="zong-jie">总结</h2>
+<p>22.12 版本带来的变化远不止本文所述。
+请查看 22.12 版本的<a href="https://github.com/helix-editor/helix/blob/master/CHANGELOG.md#2212-2022-12-06">更新日志</a>，了解所有性能提升、可用性改进和错误修复的完整详情。</p>
+<p>欢迎访问 <a href="https://github.com/helix-editor/helix/">Helix GitHub 仓库</a> 参与贡献并关注开发进展，也欢迎加入
+<a href="https://matrix.to/#/#helix-community:matrix.org">Matrix 频道</a> 参与讨论。</p>
 
 
 <script src="/asciinema-player.min.js"></script>

@@ -48,92 +48,68 @@
  <h1 class="title">Release 22.08 Highlights</h1>
  <time>31 August 2022</time>
 
-<p>Helix is a modal text editor with built-in support for multiple selections,
-Language Server Protocol (LSP), tree-sitter, and experimental support for Debug
-Adapter Protocol (DAP).</p>
-<p>Today marks the 22.08 release, a release with plenty of fixes and new features.
-A big <em>thank you</em> to our contributors! This release had 87 contributors. 🎉</p>
-<p>Let's check out the highlighted features for 22.08.</p>
-<h2 id="indent-guides">Indent guides</h2>
+<p>Helix 是一款模态文本编辑器，内置支持多重选择、
+语言服务器协议 (LSP)、tree-sitter，并实验性地支持调试适配器协议 (DAP)。</p>
+<p>今天发布的是 22.08 版本，该版本包含大量修复和新功能。
+非常感谢所有贡献者！本次版本共有 87 位贡献者。🎉</p>
+<p>让我们来看看 22.08 版本的一些亮点功能。</p>
+<h2 id="suo-jin-zhi-nan">缩进指南</h2>
 <asciinema-player src="/indent-guides.cast" cols="94" rows="25"></asciinema-player>
-<p>Indent guides provide a visual representation for the current indentation
-level. Enable indent guides with the <code>editor.indent-guides.render</code> key.
-The character used as a guide is also customizable.</p>
-<h2 id="cursorline">Cursorline</h2>
+<p>缩进辅助线可以直观地显示当前的缩进级别。您可以通过 <code>editor.indent-guides.render</code> 键启用缩进辅助线。
+用于显示辅助线的字符也可以自定义。</p>
+<h2 id="guang-biao-xian">光标线</h2>
 <asciinema-player src="/cursorline.cast" cols="94" rows="25"></asciinema-player>
-<p>The cursorline is a horizontal highlighted bar that follows your cursor.
-Cursorlines may be themed for the primary and all secondary cursors and
-can be enabled or disabled separate from theming with the <code>editor.cursorline</code>
-option.</p>
-<h2 id="mode-colors">Mode colors</h2>
+<p>光标线是一条跟随光标的水平高亮条。
+可以为主光标和所有辅助光标设置光标线的主题，
+并且可以使用 <code>editor.cursorline</code> 选项独立于主题设置来启用或禁用光标线。</p>
+<h2 id="mo-shi-yan-se">模式颜色</h2>
 <asciinema-player src="/color-modes.cast" cols="94" rows="25"></asciinema-player>
-<p>The mode indicator in the statusline may now be styled based on the current
-mode. This feature may be enabled with the <code>editor.color-modes</code> option and
-colors may be configured using <code>ui.statusline.{insert,normal,select}</code> keys
-in themes.</p>
-<h2 id="configurable-statusline">Configurable statusline</h2>
+<p>状态栏中的模式指示器现在可以根据当前模式进行样式设置。此功能可以通过 <code>editor.color-modes</code>
+选项启用，并且可以使用主题中的 <code>ui.statusline.{insert,normal,select}</code> 键配置颜色。</p>
+<h2 id="ke-pei-zhi-de-zhuang-tai-lan">可配置的状态栏</h2>
 <asciinema-player src="/configurable-statusline.cast" cols="94" rows="25"></asciinema-player>
-<p>The statusline may now be configured in the <code>editor.statusline</code> section
-of the config. Elements may be placed on the left, center or right of
-the statusline with a configurable separator and spacers. Two new elements
-may now also be added to your statusline: <code>file-line-ending</code> and
-<code>position-percentage</code>.</p>
+<p>现在可以在配置文件的 <code>editor.statusline</code> 部分配置状态栏。元素可以放置在状态栏的左侧、中间或右侧，
+并可配置分隔符和间距。此外，还可以向状态栏添加两个新元素：<code>file-line-ending</code> 和 <code>position-percentage</code>。</p>
 <h2 id="lsp-signature-help">LSP signature help</h2>
 <img src="/signature-help.gif" style="max-width: 80%; display: block; margin-left: auto; margin-right: auto"/>
-<p>Signature help provides documentation as you type the arguments to a function
-call and tracks which function parameter is currently being entered. Signature
-help is enabled by default.</p>
-<h2 id="lsp-document-highlight">LSP document highlight</h2>
+<p>Signature help 功能会在您输入函数调用参数时提供文档说明，并跟踪当前正在输入的函数参数。签名帮助功能默认启用。</p>
+<h2 id="lsp-wen-dang-gao-liang-xian-shi">LSP 文档高亮显示</h2>
 <asciinema-player src="/document-highlight.cast" cols="94" rows="25"></asciinema-player>
-<p>The document highlight request (<code>Space-h</code>) creates a selection for all
-instances of the symbol under the primary cursor. Helix has robust support for
-multiple selections, so you may edit all selections simultaneously (for
-example with <code>c</code>) or cycle between selections (<code>(</code>/<code>)</code>).</p>
-<h2 id="lsp-diagnostics-pickers">LSP diagnostics pickers</h2>
+<p>文档高亮显示请求（<code>Space-h</code>）会选中主光标下方符号的所有实例。Helix 对多重选择提供了强大的支持，
+因此您可以同时编辑所有选中的内容（例如使用 <code>c</code> 命令），或者在不同的选中项之间切换（使用 <code>/</code> 命令）。</p>
+<h2 id="lsp-zhen-duan-xuan-ze-qi">LSP 诊断选择器</h2>
 <asciinema-player src="/diagnostic-picker.cast" cols="94" rows="25"></asciinema-player>
-<p>The new buffer and workspace diagnostics pickers may be used to jump to
-Language Server diagnostics like warnings and errors. Use <code>Space-g</code> to
-open the picker with diagnostics for the current buffer and <code>Space-G</code>
-to view all diagnostics in a workspace.</p>
-<h2 id="jumplist-picker">Jumplist picker</h2>
+<p>新的缓冲区和工作区诊断选择器可用于跳转到语言服务器提供的诊断信息，例如警告和错误。使用 <code>Space-g</code>
+打开当前缓冲区的诊断信息选择器，使用 <code>Space-G</code> 查看工作区中的所有诊断信息。</p>
+<h2 id="tiao-zhuan-lie-biao-xuan-ze-qi">跳转列表选择器</h2>
 <asciinema-player src="/jumplist-picker.cast" cols="94" rows="25"></asciinema-player>
-<p>The jumplist saves a history of selections. Save selections with <code>C-s</code> and jump
-forward with <code>C-i</code> and backward with <code>C-o</code>. The jumplist is a powerful tool,
-especially when working with Language Server goto-definition or global search
-which both save to the jumplist automatically.</p>
-<p>22.08 adds a new picker that can be used to jump across entries in the jumplist.
-The preview pane shows the line of the saved primary selection. Bring up the
-jumplist picker with <code>Space-j</code>.</p>
-<h2 id="external-formatters">External formatters</h2>
+<p>跳转列表会保存选择历史记录。使用 <code>C-s</code> 保存选择，使用 <code>C-i</code> 向前跳转，使用 <code>C-o</code> 向后跳转。
+跳转列表是一个强大的工具，尤其是在使用语言服务器的“跳转到定义”功能或全局搜索功能时，这两个功
+能都会自动将结果保存到跳转列表中。</p>
+<p>22.08 版本新增了一个选择器，可用于在跳转列表中的条目之间跳转。预览窗格会显示已保存的主要选择
+所在行的内容。使用 <code>Space-j</code> 调出跳转列表选择器。</p>
+<h2 id="wai-bu-ge-shi-hua-cheng-xu">外部格式化程序</h2>
 <asciinema-player src="/external-formatter.cast" cols="94" rows="25"></asciinema-player>
-<p>Many Language Servers provide format-on-save capabilities. For languages
-without Language Servers or for Language Servers that do not implement
-formatting, an external formatter binary may now be configured. The document
-is passed through the formatter's stdin and replaced with the formatted output
-from stdout.</p>
-<p>An external formatter may also be used when you prefer the formatting from an
-external tool over formatting provided by a Language Server. For example if you
-configure <code>black</code> for formatting Python, formatting will be accomplished with
-<code>black</code> rather than <code>pylsp</code>.</p>
+<p>许多语言服务器都提供保存时自动格式化功能。对于没有语言服务器的语言，或者对于未实现格式化功能的
+语言服务器，现在可以配置外部格式化程序。文档内容将通过标准输入传递给格式化程序，并用格式化程序
+从标准输出返回的格式化结果替换。</p>
+<p>如果您更喜欢使用外部工具提供的格式化功能，而不是语言服务器提供的格式化功能，也可以使用外部格式
+化程序。例如，如果您配置使用 <code>black</code> 来格式化 Python 代码，那么格式化将由 <code>black</code> 完成，
+而不是 <code>pylsp</code>。</p>
 <h2 id="bracketed-paste">Bracketed paste</h2>
 <asciinema-player src="/bracketed-paste.cast" cols="94" rows="25"></asciinema-player>
-<p>Bracketed paste is terminal emulator feature that allows terminal programs to
-recognize paste sequences and handle the pasted text. Without bracketed paste
-support, text pasted with operating-system level paste (<code>C-v</code>) looked to Helix
-like text that was entered very quickly which lead to some odd side-effects
-like awkward indentation or mysteriously appearing auto-pair characters.</p>
-<p>22.08 adds support for bracketed paste, so now all pastes into Helix from
-terminal emulators that support bracketed paste work as if you had pressed
-<code>Space-p</code> in normal mode. In the above cast, the entire text of <em>Moby-Dick</em>
-is pasted with <code>C-v</code> in insert mode instantly.</p>
-<h2 id="wrapping-up">Wrapping up</h2>
-<p>These changes are just the highlights. Check out the full [changelog] to see
-all that's changed since 22.05. Release binaries can be found on the <a href="https://github.com/helix-editor/helix/releases/tag/22.08">release
-page</a>.</p>
-<p>Be ready for more exciting changes in Helix 22.10 expected in October!
-Contribute and follow along with development in the
-<a href="https://github.com/helix-editor/helix/">Helix GitHub repository</a> and be sure to join in on discussions in
-the <a href="https://matrix.to/#/#helix-community:matrix.org">Matrix channel</a>.</p>
+<p>带括号粘贴是终端模拟器的一项功能，它允许终端程序识别粘贴序列并处理粘贴的文本。如果没有带括号粘
+贴的支持，使用操作系统级别的粘贴功能（<code>Ctrl+v</code>）粘贴的文本在 Helix 中看起来就像是快速输入的
+文本，这会导致一些奇怪的副作用，例如缩进异常或莫名其妙地出现自动匹配的字符。</p>
+<p>22.08 版本添加了对带括号粘贴的支持，因此现在所有从支持带括号粘贴的终端模拟器粘贴到 Helix 的
+文本都将像在普通模式下按下 <code>Space+p</code> 一样工作。在上面的示例中，整本《白鲸记》的文本都可以通
+过在插入模式下按下 <code>Ctrl+v</code> 瞬间粘贴进去。</p>
+<h2 id="zong-jie">总结</h2>
+<p>以上仅为部分重要更新。请查看完整的<a href="https://github.com/helix-editor/helix/blob/master/CHANGELOG.md#2208-2022-08-31">更新日志</a>，了解自 22.05 版本以来所有更改。
+发布版本二进制文件可在[发布页面]找到。</p>
+<p>敬请期待 10 月份发布的 Helix 22.10 版本带来的更多精彩更新！
+欢迎访问 <a href="https://github.com/helix-editor/helix/">Helix GitHub 仓库</a> 参与贡献并关注开发进展，
+也欢迎加入 <a href="https://matrix.to/#/#helix-community:matrix.org">Matrix 频道</a> 参与讨论。</p>
 
 
 <script src="/asciinema-player.min.js"></script>
