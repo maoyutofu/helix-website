@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      Release 22.05 Highlights |  Helix - 后现代文本编辑器
+    </title>
+    <meta name="description" content="后现代模态文本编辑器">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap">
+    <link href="/style.css" rel="stylesheet">
+    <link href="/asciinema-player.css" rel="stylesheet">
+    
+      <link rel="alternate" type="application/atom+xml" title="Atom" href="https://helix-editor.cn/atom.xml">
+    
+    <script>
+    var _hmt = _hmt || [];
+    (function () {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?cba200a5ec4b43bde4fdeda9adc55ce4";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+  </head>
+  <body>
+    <div class="overlay"></div>
+    <nav>
+        <a href="/" style="display: flex; align-items: center;">
+          <img src="/logo.svg" alt="Logo" height="64" style="padding-right: 1.25rem; margin: 0" />
+          <h1>Helix</h1>
+        </a>
+        <div style="flex: 1"></div>
+        <menu style="display: flex; flex-wrap: wrap;">
+          <a href="/news">最新动态</a>
+          <a href="https://docs.helix-editor.cn">文档</a>
+          <a href="https://github.com/helix-editor/helix">GitHub</a>
+          <a href="https://matrix.to/#/#helix-community:matrix.org">Matrix</a>
+          <a href="https://docs.helix-editor.cn/install.html">下载</a>
+        </menu>
+    </nav>
+    <article>
+        
+
+ <h1 class="title">Release 22.05 Highlights</h1>
+ <time>28 May 2022</time>
+
+<p>Helix 是一款模式化文本编辑器，内置支持多重选择、
+语言服务器协议 (LSP)、tree-sitter，并实验性地支持调试适配器协议 (DAP)。</p>
+<p>今天发布了 22.05 版本，这是一个功能丰富的版本，参与贡献者人数是上一版本的两倍多（110 人！）。
+非常感谢所有参与者！🙌</p>
+<p>还要特别感谢 <a href="https://github.com/amirrezaask"><code>@amirrezaask</code></a> 制作的精彩 <a href="https://www.youtube.com/watch?v=__U4A2Q9fNI">Helix 介绍视频</a>！还要特别感谢 <a href="https://github.com/amirrezaask"><code>@amirrezaask</code></a> 制作的精彩 <a href="https://www.youtube.com/watch?v=__U4A2Q9fNI">Helix 介绍视频</a>！</p>
+<p>让我们来看看 22.05 版本的炫酷功能。</p>
+<h2 id="suo-jin-zhong-gou">缩进重构</h2>
+<p>缩进系统已全面重构。缩进功能仍然通过查询文档的 Tree-sitter 解析语法树来实现，
+但现在查询文件可以使用 Tree-sitter 查询语言的全部表达能力，而不仅仅是简单的节点名称。
+预计新的缩进系统将更加稳健，并能更好地处理各种特殊情况。</p>
+<h2 id="ke-pei-zhi-de-gutters">可配置的 gutters</h2>
+<p>现在您可以在 <code>config.toml</code> 文件中配置边栏。例如，您可以移除行号边栏，同时仍然显示 LSP 诊断信息。</p>
+<pre data-lang="toml" style="background-color:#2b303b;color:#c0c5ce;" class="language-toml "><code class="language-toml" data-lang="toml"><span>[editor]
+</span><span style="color:#bf616a;">gutters </span><span>= [&quot;</span><span style="color:#a3be8c;">diagnostics</span><span>&quot;] </span><span style="color:#65737e;"># default is [&quot;diagnostics&quot;, &quot;line-numbers&quot;]
+</span></code></pre>
+<h2 id="ben-di-yu-yan-pei-zhi">本地语言配置</h2>
+<p>现在可以为每个项目单独指定语言配置。创建一个 <code>.helix</code> 目录，并在其中创建一个 <code>languages.toml</code> 文件，
+以覆盖<a href="https://docs.helix-editor.cn/guides/adding_languages.html#language-configuration">默认语言配置</a>中的值。例如，要将 C 项目的缩进方式从空格更改为制表符：</p>
+<pre data-lang="toml" style="background-color:#2b303b;color:#c0c5ce;" class="language-toml "><code class="language-toml" data-lang="toml"><span style="color:#65737e;"># my_c_project/.helix/languages.toml
+</span><span>[[language]]
+</span><span style="color:#bf616a;">name </span><span>= &quot;</span><span style="color:#a3be8c;">c</span><span>&quot;
+</span><span style="color:#bf616a;">indent </span><span>= { </span><span style="color:#bf616a;">tab-width </span><span>= </span><span style="color:#d08770;">8</span><span>, </span><span style="color:#bf616a;">unit </span><span>= &quot;</span><span style="color:#96b5b4;">\t</span><span>&quot; }
+</span></code></pre>
+<h2 id="biao-chi">标尺</h2>
+<asciinema-player src="/rulers.cast" cols="94" rows="25"></asciinema-player>
+<p>现在可以通过 <code>rulers</code> 选项配置垂直标尺。使用它们作为参考，以确保代码行不超过最大长度限制。</p>
+<h2 id="xian-shi-ke-jian-de-kong-bai-zi-fu">显示可见的空白字符</h2>
+<asciinema-player src="/visible-whitespace.cast" cols="94" rows="25"></asciinema-player>
+<p>现在可以显示空格、制表符和换行符等空白字符。您可以使用 <code>:set</code> 命令在运行时设置 <code>whitespace.render</code>
+选项，也可以在 <code>config.toml</code> 文件的编辑器部分进行设置。可见的空白字符指示符可以使 Helix 的选择模型更加
+直观，尤其是在行尾附近。用于显示制表符、空格、不间断空格和换行符的字符也可以自定义，还可以选择是否显示这
+些字符。事实上，在本篇文章的其余部分，您将看到我自定义的制表符和换行符！</p>
+<h2 id="use-registers-in-prompts">Use registers in prompts</h2>
+<asciinema-player src="/insert-registers-in-prompts.cast" cols="94" rows="25"></asciinema-player>
+<p>Values stored in registers may now be used in prompts like search or global
+search. In the above example, we yank a selection to the <code>"</code> register with
+<code>y</code> and then open up the global search prompt with <code>Space</code> <code>/</code>. The available
+registers are shown above the prompt and we hit <code>"</code> to insert the contents of
+the <code>"</code> register.</p>
+<h2 id="reflow-paragraphs">Reflow paragraphs</h2>
+<asciinema-player src="/reflow.cast" cols="94" rows="25"></asciinema-player>
+<p>新的 <code>:reflow</code> 命令可以将文本按指定的列宽进行自动换行。
+默认列宽可以根据不同的语言进行配置。该命令能够识别行之
+间的匹配前缀，因此您可以对行注释、Markdown 引用或带
+有前导空格的行进行换行，并且前导字符也会被正确地放置。</p>
+<h2 id="qie-huan-chuang-kou">切换窗口</h2>
+<asciinema-player src="/window-swapping.cast" cols="94" rows="25"></asciinema-player>
+<p>现在可以与相邻窗口交换位置，也可以调换窗口分割方向。
+打开窗口菜单（使用 <code>C-w</code> 或 <code>空格 w</code>），然后使用 <code>H</code>、<code>J</code>、<code>K</code> 和 <code>L</code>
+分别将当前窗口与左侧、下方、上方和右侧的相邻窗口交换位置。
+使用 <code>t</code> 或 <code>C-t</code> 可以在垂直分割和水平分割之间切换。</p>
+<h2 id="zai-yun-xing-shi-she-zhi-yu-yan">在运行时设置语言</h2>
+<asciinema-player src="/set-language.cast" cols="94" rows="25"></asciinema-player>
+<p>现在可以在运行时设置缓冲区语言。使用
+<code>:set-language language</code>（或简写为 <code>:lang language</code>）来设置语言并切换语言服务器。</p>
+<h2 id="zong-jie">总结</h2>
+<p>以上仅列举了 22.05 版本的一些主要更新亮点。请查看<a href="https://github.com/helix-editor/helix/blob/master/CHANGELOG.md#2205-2022-05-17">更新日志</a>了解完整内容。您可以在[发布页面]下载 22.05 版本的二进制文件。从该版本开始，发布包中包含 AppImage 文件，方便 Linux 用户使用。</p>
+<p>敬请期待 7 月份发布的 Helix 22.07 版本，届时将带来更多功能和改进。欢迎访问 <a href="https://github.com/helix-editor/helix/">GitHub 仓库</a> 参与贡献并关注开发进展，也欢迎加入 <a href="https://matrix.to/#/#helix-community:matrix.org">Matrix 频道</a> 参与讨论。</p>
+
+
+<script src="/asciinema-player.min.js"></script>
+<script>
+for (const player of document.getElementsByTagName("asciinema-player")) {
+  AsciinemaPlayer.create(player.attributes["src"].value, player, {
+    cols: parseInt(player.attributes["cols"].value),
+    rows: parseInt(player.attributes["rows"].value),
+  });
+}
+</script>
+
+
+    </article>
+</body></html>

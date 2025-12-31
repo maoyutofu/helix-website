@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      Release 22.03 Highlights |  Helix - 后现代文本编辑器
+    </title>
+    <meta name="description" content="后现代模态文本编辑器">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap">
+    <link href="/style.css" rel="stylesheet">
+    <link href="/asciinema-player.css" rel="stylesheet">
+    
+      <link rel="alternate" type="application/atom+xml" title="Atom" href="https://helix-editor.cn/atom.xml">
+    
+    <script>
+    var _hmt = _hmt || [];
+    (function () {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?cba200a5ec4b43bde4fdeda9adc55ce4";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+  </head>
+  <body>
+    <div class="overlay"></div>
+    <nav>
+        <a href="/" style="display: flex; align-items: center;">
+          <img src="/logo.svg" alt="Logo" height="64" style="padding-right: 1.25rem; margin: 0" />
+          <h1>Helix</h1>
+        </a>
+        <div style="flex: 1"></div>
+        <menu style="display: flex; flex-wrap: wrap;">
+          <a href="/news">最新动态</a>
+          <a href="https://docs.helix-editor.cn">文档</a>
+          <a href="https://github.com/helix-editor/helix">GitHub</a>
+          <a href="https://matrix.to/#/#helix-community:matrix.org">Matrix</a>
+          <a href="https://docs.helix-editor.cn/install.html">下载</a>
+        </menu>
+    </nav>
+    <article>
+        
+
+ <h1 class="title">Release 22.03 Highlights</h1>
+ <time>28 March 2022</time>
+
+<p>从一些细小的用户体验改进和错误修复，到大型功能更新和代码重构，Helix 22.03 版本带来了一些令人兴奋的变化。
+Helix 是一款模式文本编辑器，内置支持多重选择、语言服务器协议 (LSP)、tree-sitter，现在还支持调试适配器协议 (DAP)。</p>
+<p>在介绍亮点之前，有一些管理方面的注意事项。
+<code>master</code> 分支的更改现在与发布版本[文档][docs]分开发布。
+您可以在<a href="https://docs.helix-editor.com/master/">here</a>找到新的 <code>master</code> 分支文档。
+Helix 正在切换版本控制方案。新的版本将采用日历版本格式：<code>YY.0M(.MICRO)</code>。我们计划大约每两个月发布一个新版本。请查看[更新日志][changelog]了解此版本的所有新功能和修复。</p>
+<h2 id="jian-kang-jian-cha">健康检查</h2>
+<p>Helix 22.03 带来了新的 CLI 标志：<code>hx --health</code>。
+使用新的健康检查标志来排查缺失的语言服务器和查询。</p>
+<p>使用 <code>hx --health</code> 命令检查所有语言的运行状况，或使用 <code>hx --health &lt;lang&gt;</code> 命令查看特定语言的详细信息。</p>
+<asciinema-player src="/health-check.cast" cols="92" rows="24"></asciinema-player>
+<h2 id="shi-yan-xing-dap-zhi-chi">实验性 DAP 支持</h2>
+<p>调试适配器协议 (DAP) 是一种用于编辑器和调试器之间通信的抽象协议。它的设计理念与语言服务器协议 (LSP) 非常相似，但专为调试而设计。您可以使用 <code>&lt;space-d&gt;</code> 与调试适配器进行交互。</p>
+<asciinema-player src="/dap.cast" cols="154" rows="46"></asciinema-player>
+<p>请注意，DAP 适配器目前仍处于实验阶段：尚未提供文档，可能存在 bug，并且用户体验也略显笨拙。我们非常欢迎您的贡献！</p>
+<h2 id="zeng-liang-zhu-ru-jie-xi-zhong-xie">增量注入解析重写</h2>
+<p>Tree-sitter 驱动的语法高亮功能中最酷炫的特性之一是能够将一种语言“注入”到另一种语言的文档中。例如，如果您正在编写 Markdown 文档，可以使用如下代码块：</p>
+<p>这是一段 Rust 代码：</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span>println!(&quot;</span><span style="color:#a3be8c;">Hello, world!</span><span>&quot;)
+</span></code></pre>
+<p>Helix 通过注入 tree-sitter-rust 来高亮显示 Rust 代码块。注入功能已重写，现在可以增量解析其中的更改，这在编辑包含大型注入代码块的文档时可以显著提高速度。</p>
+<p>除了重写注入功能之外，Helix 现在还支持“组合”注入。例如，在对交互式 Elixir (IEx) 代码进行高亮显示时，我们可能会遇到如下代码块：</p>
+<pre data-lang="elixir" style="background-color:#2b303b;color:#c0c5ce;" class="language-elixir "><code class="language-elixir" data-lang="elixir"><span>iex&gt; send(self(), </span><span style="color:#a3be8c;">:hello</span><span>)
+</span><span>iex&gt; </span><span style="color:#b48ead;">receive </span><span style="color:#d08770;">do: </span><span>(</span><span style="color:#a3be8c;">:hello </span><span>-&gt; </span><span style="color:#a3be8c;">:ok</span><span>)
+</span></code></pre>
+<p>IEx 语法会将 tree-sitter-elixir 注入到提示符标记后的每一行。
+组合注入功能可以处理需要将单独注入的文档解析为一个组合文档的情况，例如：</p>
+<pre data-lang="elixir" style="background-color:#2b303b;color:#c0c5ce;" class="language-elixir "><code class="language-elixir" data-lang="elixir"><span>iex&gt; </span><span style="color:#b48ead;">if </span><span style="color:#d08770;">true </span><span style="color:#b48ead;">do
+</span><span>...&gt;   </span><span style="color:#a3be8c;">:ok
+</span><span>...&gt; </span><span style="color:#b48ead;">end
+</span></code></pre>
+<p>Helix 现在可以同时解析所有三行代码。将来，此功能可用于添加对 EJS 或 ERB 等模板语言的支持。</p>
+<h2 id="tree-sitter-yu-fa-zhong-gou">Tree-Sitter 语法重构</h2>
+<p>过去，Tree-sitter 语法仓库都是作为 Git 子模块添加到 Helix 仓库中的。然而，使用子模块可能会很麻烦，尤其是一个仓库中有超过 50 个子模块时更是如此。随着语言支持的改进，克隆、持续集成 (CI) 和打包所需的时间也越来越长。</p>
+<p>Helix 22.03 版本彻底重构了 Tree-sitter 语法系统。最显著的变化是<strong>子模块被移除</strong>！如果您使用源代码，现在可以使用标准的 <code>git clone https://github.com/helix-editor/helix</code> 命令进行克隆。那么 Tree-sitter 子模块去哪儿了呢？它们已被两个新的命令行标志取代：<code>hx --grammar fetch</code> 用于将语法仓库克隆到运行时目录，<code>hx --grammar build</code> 用于编译它们。您也可以使用 <code>-g</code> 作为缩写。语法仓库会并行进行浅克隆，因此在网络连接良好的情况下，获取所有 60 个语法现在只需 6 秒。</p>
+<p>如果您是从源代码构建或开发 Helix，请注意，获取和构建语法已包含在 <code>helix-term</code> 构建步骤中，因此您无需手动获取或构建语法。</p>
+<p>此外，如果您想自定义要获取和构建哪些 Tree-sitter 语法，现在可以将 <code>use-grammars</code> 键添加到 <code>languages.toml</code> 文件的<strong>顶部</strong>：</p>
+<asciinema-player src="/use-grammars.cast" cols="92" rows="24"></asciinema-player>
+<p>如果您正在编写 Tree-sitter 语法，可以通过在 <code>languages.toml</code> 文件中将 Helix 指向语法的本地路径来尝试集成它，而无需将更改发布到远程 Git 仓库：</p>
+<pre data-lang="toml" style="background-color:#2b303b;color:#c0c5ce;" class="language-toml "><code class="language-toml" data-lang="toml"><span>[[language]]
+</span><span style="color:#bf616a;">name </span><span>= &quot;</span><span style="color:#a3be8c;">mylang</span><span>&quot;
+</span><span style="color:#65737e;"># ...
+</span><span>
+</span><span>[[grammar]]
+</span><span style="color:#bf616a;">name </span><span>= &quot;</span><span style="color:#a3be8c;">mylang</span><span>&quot;
+</span><span style="color:#bf616a;">source </span><span>= { </span><span style="color:#bf616a;">path </span><span>= &quot;</span><span style="color:#a3be8c;">/local/path/to/tree-sitter-mylang</span><span>&quot; }
+</span></code></pre>
+<p>运行 <code>hx -g build</code> 将构建该语法。添加一些查询，您就可以开始交互式语法开发了。</p>
+<h2 id="jie-xia-lai">接下来</h2>
+<p>下一个版本也一定会非常精彩。欢迎参与贡献，并在 <a href="https://github.com/helix-editor/helix/">GitHub 仓库</a> 上关注开发进展，
+也别忘了加入 <a href="https://matrix.to/#/#helix-community:matrix.org">Matrix 频道</a> 参与讨论。</p>
+
+
+<script src="/asciinema-player.min.js"></script>
+<script>
+for (const player of document.getElementsByTagName("asciinema-player")) {
+  AsciinemaPlayer.create(player.attributes["src"].value, player, {
+    cols: parseInt(player.attributes["cols"].value),
+    rows: parseInt(player.attributes["rows"].value),
+  });
+}
+</script>
+
+
+    </article>
+</body></html>
